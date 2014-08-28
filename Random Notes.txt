@@ -1,0 +1,174 @@
+Random Notes:
+
+CHAPTERS 1 & 2 -------------
+
+"git commit -a -m"
+	- the "-a" is used to commit all changes/modifcations to existing files.
+	if new files were created, you should use "git add ."
+	
+On deploying to heroku:
+	1. heroku login
+	2. heroku create
+	3. git push heroku master
+
+On starting a rails app:
+	1. rails new app_name
+	2. update the gemfile/.gitignore file (http://www.railstutorial.org/book/demo_app#code-demo_gemfile_sqlite_version_redux)
+	3. bundle install --without production
+	4. bundle update
+	5. bundle install
+	6. git init
+	7. git add .
+	8. git commit -m "initial commit"
+
+On creating a new repository
+	1. https://github.com/new (don't initialize README)
+	2. git remote add origin https://github.com/<username>/demo_app.git
+	3. git push -u origin master
+
+
+"bundle exec rake db:migrate"
+	- this simply updated the database with a new data model 
+	(in this case, the users data model) "bundle exec" 
+	ensures that the command uses the version of Rake 
+	corresponding to our Gemfile
+
+	REST - representational state transfer
+	most application components (such as users and microposts)
+	 are modeled as *resources* that can be creates, read, 
+	 updated and deleted
+
+When you see "resources :users" in your routes file
+(":users" could be anything) it is a routing rule
+that maps users URLs to actions in the users controller
+(like: /users -> index -> page to list all users), think of
+that chart.
+
+
+CHAPTER 3 ----------
+
+A CONTROLLER is a container for a group of (possibly dynamic)
+web pages.
+
+**GENERATING A STATIC PAGES CONTROLLER*
+rails generate controller StaticPages home help --no-testframework
+
+Using camel case in the controller name creates
+a controller file written in snake case (snake_case.rb)
+
+**UNDOING THINGS IN RAILS*
+These command cancel each other out:
+
+$ rails generate controller FooBars baz quux
+$ rails destroy  controller FooBars baz quux
+
+as do these~~~~
+
+$ rails generate model Foo bar:string baz:integer
+$ rails destroy model Foo
+
+Migrations change the state of the database using:
+
+rake db:migrate
+
+You can undo a single migration step using:
+
+rake db:rollback
+
+To go all the way back to the beginning, you can use:
+
+rake db:migrate VERSION=0
+
+The ROUTES FILE (called config/routes.rb) is used
+to find the correspondence between URLs and web pages
+
+GET - most common HTTP operation, used fo reading data on the web
+ it means "get a page". When you visit google.com your browser
+ submits a GET request
+
+ POST - next most common. request sent from your browser when
+ you submit a form. In rails apps, POST requests are typically used
+ for creating things 
+
+ PATCH/DELETE - updating/destroying things on the remote server 
+
+ also, PATCH == PUT
+
+classes are just a convenient way to organize functions (methods)
+
+when visiting "/static_pages/home" rails looks in the 
+static pages controller and executes the code in the home action
+and then reders the view corresponding to the action.
+
+*****HOW TO ADD PAGES TO YOUR APP*****
+
+	1. create a route in config/routes.rb (fixes RoutingError)
+	2. create an action in the controller (fixes ActionNotFound error)
+	3. create a view (also called template)
+
+CHAPTER 3 ----------
+
+
+"app/helpers/application_helper"
+ - stores functions that can be used as built in functions inside views
+
+
+CHAPTER 5 -----------
+
+
+when starting a new section of a site, you can break off to a new branch for that particular part
+of your project
+
+ex: "git checkout -b filling-in-layout"
+
+"application.html.erb" is the template file for all the
+views
+
+link_to is a RAILS HELPER used to create links.
+ex: <%= link_to "sample app", '#', id: "logo" %>
+Arguments:
+1) the link text
+2) the URL
+3) An OPTIONAL options hash (i.e. id: "logo")
+
+image_tag is a RAILS HELPER
+Arguments
+1) the path to an image
+2) an optional options hash
+
+
+
+PARTIALS are used to break down layout code into more organized modules. Partial files start with and underscore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
